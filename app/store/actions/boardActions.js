@@ -1,4 +1,4 @@
-import { SET_NICKNAME, SET_DIFFICULTY, GET_BOARD, SET_BOARD, VALIDATE_BOARD, SOLVE_BOARD, URL } from './types';
+import { SET_NICKNAME, SET_DIFFICULTY, SET_STATUS, GET_BOARD, SET_BOARD, VALIDATE_BOARD, SOLVE_BOARD, URL } from './types';
 
 export function setNickname(nickname) {
     return {
@@ -14,6 +14,15 @@ export function setDifficulty(difficulty) {
         type: SET_DIFFICULTY,
         payload: {
             difficulty
+        }
+    }
+}
+
+export function setStatus(status) {
+    return {
+        type: SET_STATUS,
+        payload: {
+            status: status
         }
     }
 }
@@ -64,9 +73,9 @@ export function validateBoard(board) {
         })
             .then(res => res.json())
             .then(res => {
-                console.log('theen',res)
+                console.log('theen',res.status)
                 dispatch({
-                    type: VALIDATE_BOARD,
+                    type: SET_STATUS,
                     payload: {
                         status: res.status
                     }
@@ -96,6 +105,7 @@ export function solveBoard(board) {
                     payload: {
                         difficulty: res.difficulty,
                         board: res.solution,
+                        status: res.status,
                     }
                 })
             })

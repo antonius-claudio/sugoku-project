@@ -1,21 +1,32 @@
 import React from 'react';
-import { Text, Button, View } from 'react-native';
+import { Text, Button, View, ImageBackground } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNickname } from '../store/actions/boardActions';
-import styles from '../styles';
+import styles, { background } from '../styles';
 
-export default function Finish() {
+export default function Finish({ navigation }) {
 
-    let { nickname } = useSelector(state => state.boardReducer);
+    let { nickname, status } = useSelector(state => state.boardReducer);
+
+    const playAgain = () => {
+        navigation.navigate('Home');
+    }
     
     return(
         <>
-            <View style={[styles.container, styles.shadow]}>
-                <Text>
-                    Finish
-                </Text>
-                
-            </View>
+            <ImageBackground source={background} style={styles.image}>
+                <View style={[styles.container, styles.shadow]}>
+                    <Text>
+                        Hey {nickname},
+                    </Text>
+                    <Text>
+                        your game is {status}
+                    </Text>
+                    <View style={styles.divPlay}> 
+                        <Button onPress={playAgain} title='Play Again' style={styles.btnPlay}/>
+                    </View>
+                </View>
+            </ImageBackground>
         </>
     )
 }

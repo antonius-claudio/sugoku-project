@@ -117,5 +117,13 @@ export default StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
         borderBottomWidth: 1,
+    },
+    picker: { 
+        height: 50, 
+        width: 120,
+        marginBottom: 20,
+        color: '#e80101',
+    },
+    itemPicker: {
     }
 });
