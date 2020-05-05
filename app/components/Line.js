@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Grid } from '../components';
+import styles from '../styles';
 
 export default function Line(props) {
 
@@ -16,10 +17,3 @@ export default function Line(props) {
         </>
     )
 }
-
-const styles = StyleSheet.create({
-    line: {
-      flex: 1,
-      flexDirection:'row'
-    },
-  });

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, StyleSheet, Text } from 'react-native';
+import { View, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBoard } from '../store/actions/boardActions';
+import styles from '../styles';
 
 export default function Grid(props) {
 
@@ -31,24 +32,6 @@ export default function Grid(props) {
                 maxLength={1}
                 editable={props.editable}
             />
-            {/* <Text>
-                {JSON.stringify(cell)}
-                {JSON.stringify(props.baris)}
-                {JSON.stringify(props.kolom)}
-            </Text> */}
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    boxInput: {
-        borderWidth: 1,
-        margin: 3,
-    },
-    bg1: {
-        backgroundColor: '#fff',
-    },
-    bg2: {
-        backgroundColor: '#D78161',
-    }
-})
