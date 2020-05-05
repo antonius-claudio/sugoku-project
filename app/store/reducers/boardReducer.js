@@ -8,34 +8,34 @@ const initialState = {
     status: ''
 };
 
-export default (state = initialState, actions) => {
-    switch (actions.type) {
+export default (state = initialState, action) => {
+    switch (action.type) {
         case SET_NICKNAME: {
             return {...state,
-                nickname : actions.payload.nickname}
+                nickname : action.payload.nickname}
         }
         case SET_DIFFICULTY: {
             return {...state, 
-                difficulty : actions.payload.difficulty}
+                difficulty : action.payload.difficulty}
         }
         case GET_BOARD: {
             return {...state, 
-                board : actions.payload.board,
-                boardEditable : actions.payload.boardEditable}
+                board : action.payload.board,
+                boardEditable : action.payload.boardEditable}
         }
         case SET_BOARD: {
             return {...state, 
-                board : actions.payload.board}
+                board : action.payload.board}
         }
         case VALIDATE_BOARD: {
             return {...state, 
-                status: actions.payload.status}
+                status: action.payload.status}
         }
         case SOLVE_BOARD: {
-            console.log('reducer solve', actions.payload.status)
+            console.log('reducer solve', action.payload.status)
             return {...state,
-                difficulty : actions.payload.difficulty,
-                board : actions.payload.board}
+                difficulty : action.payload.difficulty,
+                board : action.payload.board}
         }
         default:
             return state;

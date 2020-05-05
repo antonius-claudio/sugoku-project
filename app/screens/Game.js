@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
-import { Text, Button, View } from 'react-native';
+import { Text, Button, View, ImageBackground } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setDifficulty, getBoard, validateBoard, solveBoard } from '../store/actions/boardActions';
+import { setDifficulty, getBoard, validateBoard, solveBoard, setNickname } from '../store/actions/boardActions';
 import { Line } from '../components';
-import styles from '../styles';
+import styles, { background } from '../styles';
 
-export default function Game() {
+export default function Game({ route }) {
 
-    let {board, status, boardEditable} = useSelector(state => state.boardReducer);
+    let {board, status, boardEditable, nickname} = useSelector(state => state.boardReducer);
     let level = 'easy';
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(setNickname(route.params.nickname));
         dispatch(setDifficulty(level));
         dispatch(getBoard());
     }, [])
@@ -34,25 +35,35 @@ export default function Game() {
     console.log('render')
     return(
         <>
-            <View style={[styles.container, styles.shadow]}>
-                <Text>
-                    Board
-                </Text>
-                <Text>
-                    {JSON.stringify(board)}
-                </Text>
-                <Text>
-                {JSON.stringify(boardEditable)}
-                </Text>
+            <ImageBackground source={background} style={styles.image}>
+                <View style={[styles.container, styles.shadow]}>
+                    <Text style={styles.name}>
+                        Hi, {nickname}
+                    </Text>
+                    {/* <Text>
+                        {JSON.stringify(board)}
+                    </Text>
+                    <Text>
+                    {JSON.stringify(boardEditable)}
+                    </Text> */}
                     {board.length === 0 && <Text>Wait a sec ...</Text>}
                     {/* {JSON.stringify(board)} */}
                     {board.length !== 0 && board.map((line, index) => <Line key={index} line={line} baris={index}/>)}
-                <View style={styles.viewBtn}>
-                    <Button onPress={newBoard} title='new' />
-                    <Button onPress={validate} title='Validate' />
-                    <Button onPress={solve} title='Solve' />
+                    {board.length !== 0 && 
+                        <View style={styles.viewBtn}>
+                            <View style={styles.btnGame}>
+                                <Button onPress={newBoard} title='new' />
+                            </View>
+                            <View style={styles.btnGame}>
+                                <Button onPress={validate} title='Validate' />
+                            </View>
+                            <View style={styles.btnGame}>
+                                <Button onPress={solve} title='Solve' />
+                            </View>
+                        </View>
+                    }
                 </View>
-            </View>
+            </ImageBackground>
         </>
     )
 }
