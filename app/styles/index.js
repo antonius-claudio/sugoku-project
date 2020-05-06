@@ -124,6 +124,10 @@ export default StyleSheet.create({
         marginBottom: 20,
         color: '#e80101',
     },
-    itemPicker: {
-    }
+    animationContainer: {
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+    },
 });
