@@ -39,6 +39,12 @@ export default function Game({ route, navigation }) {
         if (count % 60 === 0 && count > 58) {
             setMin(min+1);
         }
+        // if (count <= 60) {
+        //     setSec(count);
+        // }
+        // if (count === 60) {
+        //     setCount(0)
+        // }
         setSec(count%60);
     }, [count])
 
@@ -53,7 +59,7 @@ export default function Game({ route, navigation }) {
         dispatch(getBoard());
         clearInterval(idInterval);
         setCount(0);
-        setSec(0);
+        // setSec(0); tidak perlu karena sec nge watch si count
         setMin(0);
         console.log('id intervall', idInterval)
         timer();
