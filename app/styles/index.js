@@ -130,4 +130,21 @@ export default StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
     },
+    finish1: {
+        fontSize: normalize(50),
+        color: '#3F00DD',
+    },
+    finish2: {
+        fontSize: normalize(15),
+        color: '#3F00DD',
+    },
+    finish21: {
+        fontSize: normalize(20),
+        color: '#3F00DD',
+        backgroundColor: '#fff',
+    },
+    finish3: {
+        color: '#E00000',
+        fontSize: normalize(40),
+    }
 });

@@ -68,7 +68,10 @@ export default function Game({ route, navigation }) {
         dispatch(validateBoard(board))
         // setTimeout(function () {
             console.log('hasil validate11111111', status)
-            navigation.navigate('Finish');
+            navigation.navigate('Finish', {
+                sec,
+                min
+            });
         // }, 2000);
 
     }
@@ -129,9 +132,9 @@ export default function Game({ route, navigation }) {
                                 </Text>
                             </View>
                             <View style={styles.viewBtn}>
-                                <View style={styles.btnGame}>
+                                {/* <View style={styles.btnGame}>
                                     <Button onPress={newBoard} title='new' />
-                                </View>
+                                </View> */}
                                 <View style={styles.btnGame}>
                                     <Button onPress={validate} title='Validate' />
                                 </View>

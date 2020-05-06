@@ -16,13 +16,21 @@ export default function Grid(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if (props.cell !== 0) {
+            setCell(props.cell);
+        } else {
+            setCell(0);
+        }
+    }, [props.cell])
+
+    useEffect(() => {
         if (cellState !== '' && cellState !== '0') {
             // newpushBoard[baris][kolom] =  Number(cell);
             // dispatch(setBoard(newpushBoard));
             board[baris][kolom] =  Number(cellState);
             dispatch(setBoard(board));
         }
-    }, [cellState])
+    }, [])
 
     return (
         <View>
@@ -39,7 +47,8 @@ export default function Grid(props) {
             {props.editable ? <TextInput 
                 style={[styles.boxInput, props.editable ? styles.bg1 : styles.bg2]} 
                 // value={String(props.cell)}
-                value={cellState || String(props.cell)}
+                value={String(cellState)}
+                // value={cellState || String(props.cell)}
                 // value={String(props.cell)} <--------------- di sini masalah
                 keyboardType='number-pad'
                 onChangeText={(text) => setCell(text)}
