@@ -8,19 +8,21 @@ export default function Grid(props) {
 
     let board = useSelector(state => state.boardReducer.board);
     let newpushBoard = JSON.parse(JSON.stringify(board));
-    let [cell, setCell] = useState(String(props.cell));
+    // let [cell, setCell] = useState(null);
+    let [cellState, setCell] = useState(null);
+    
     let baris = props.baris;
     let kolom = props.kolom;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (cell !== '' && cell !== '0') {
+        if (cellState !== '' && cellState !== '0') {
             // newpushBoard[baris][kolom] =  Number(cell);
             // dispatch(setBoard(newpushBoard));
-            board[baris][kolom] =  Number(cell);
+            board[baris][kolom] =  Number(cellState);
             dispatch(setBoard(board));
         }
-    }, [cell])
+    }, [cellState])
 
     return (
         <View>
@@ -36,11 +38,13 @@ export default function Grid(props) {
             {/* String(boardEditable[baris][kolom]) === '0' */}
             {props.editable ? <TextInput 
                 style={[styles.boxInput, props.editable ? styles.bg1 : styles.bg2]} 
+                // value={String(props.cell)}
+                value={cellState || String(props.cell)}
                 // value={String(props.cell)} <--------------- di sini masalah
                 keyboardType='number-pad'
                 onChangeText={(text) => setCell(text)}
                 maxLength={1}
-            /> 
+            ></TextInput>
             : 
             <TextInput 
                 style={[styles.boxInput, props.editable ? styles.bg1 : styles.bg2]} 

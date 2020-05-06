@@ -50,9 +50,10 @@ export default function Game({ route, navigation }) {
                     <Text style={styles.name}>
                         Hi, {nickname}
                     </Text>
-                    {/* <Text>
+                    <Text>
                         {JSON.stringify(board)}
-                    </Text>
+                        </Text>
+                    {/* 
                     <Text>
                     {JSON.stringify(boardEditable)}
                     </Text> */}
